@@ -1,8 +1,7 @@
 const WA_NUMBER = "6282323340408";
 
-// Isi dengan link CSV Google Sheet setelah Sheet dibuat dan dipublish.
-// Format contoh: https://docs.google.com/spreadsheets/d/e/XXXX/pub?output=csv
-const GOOGLE_SHEET_CSV_URL = "";
+// Link CSV Google Sheet katalog Omah Sabun.
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUinSyR-tinxUMSDsVyz1IkfTIpsLN-H3XlpGuyxu688RniKySwSOugvSTu3hgMA/pub?gid=1200617695&single=true&output=csv";
 
 const fallbackProducts = [
   { name: "DARA Sabun Cuci Piring", category: "Dapur", size: "300 ml / 450 ml / 1 Liter", scent: "Jeruk nipis / Lemon", price: "Mulai Rp5.000", desc: "Formula busa melimpah untuk membersihkan lemak dan sisa makanan di peralatan dapur.", badge: "Best Seller", icon: "🧽", image: "" },
