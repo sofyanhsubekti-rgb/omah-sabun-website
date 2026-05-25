@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Omah Sabun favicon">
+  <rect width="120" height="120" rx="24" fill="#ffffff"/>
+  <path d="M24 55 L60 24 L96 55" fill="none" stroke="#050505" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+  <text x="60" y="82" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#050505">OS</text>
+  <path d="M34 93 C45 90 75 90 86 93" fill="none" stroke="#050505" stroke-width="4" stroke-linecap="round"/>
+</svg>
