@@ -88,10 +88,10 @@ function waLink(message) {
 }
 
 const waMessages = {
-  general: "Halo WA Bot Omah Sabun, saya ingin tanya katalog produk.",
-  reseller: "Halo WA Bot Omah Sabun, saya ingin daftar reseller. Tolong kirim syarat, paket awal, dan daftar harga reseller.",
-  order: "Halo WA Bot Omah Sabun, saya ingin order produk Omah Sabun.",
-  grosir: "Halo WA Bot Omah Sabun, saya ingin tanya harga grosir dan pengiriman."
+  general: "Halo Omah Sabun, saya ingin tanya katalog produk.",
+  reseller: "Halo Omah Sabun, saya ingin daftar reseller. Tolong kirim syarat, paket awal, dan daftar harga reseller.",
+  order: "Halo Omah Sabun, saya ingin order produk Omah Sabun.",
+  grosir: "Halo Omah Sabun, saya ingin tanya harga grosir dan pengiriman."
 };
 
 function setWhatsAppLinks() {
@@ -102,7 +102,7 @@ function setWhatsAppLinks() {
 }
 
 function productCard(product) {
-  const message = `Halo WA Bot Omah Sabun, saya ingin tanya produk: ${product.name}.`;
+  const message = `Halo Omah Sabun, saya ingin tanya produk: ${product.name}.`;
   return `
     <article class="product-card">
       <div class="product-top">
