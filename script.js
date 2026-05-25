@@ -1,0 +1,168 @@
+const WA_NUMBER = "6282323340408";
+
+const products = [
+  {
+    name: "DARA Sabun Cuci Piring",
+    category: "Dapur",
+    size: "300 ml / 450 ml / 1 Liter",
+    scent: "Jeruk nipis / Lemon",
+    price: "Mulai Rp5.000",
+    desc: "Formula busa melimpah untuk membersihkan lemak dan sisa makanan di peralatan dapur.",
+    badge: "Best Seller",
+    icon: "🧽"
+  },
+  {
+    name: "DARA Sabun Cuci Tangan",
+    category: "Personal Care",
+    size: "250 ml / 500 ml",
+    scent: "Buah segar",
+    price: "Mulai Rp8.000",
+    desc: "Lembut di tangan, wangi segar, cocok untuk rumah, warung, kantor, dan tempat usaha.",
+    badge: "Rumah Tangga",
+    icon: "🫧"
+  },
+  {
+    name: "DARA Sabun Pel Lantai",
+    category: "Lantai",
+    size: "500 ml / 1 Liter",
+    scent: "Floral / Lemon",
+    price: "Mulai Rp10.000",
+    desc: "Membersihkan lantai sekaligus memberi aroma segar untuk ruangan harian.",
+    badge: "Harian",
+    icon: "🪣"
+  },
+  {
+    name: "DARA Karbol Aromatic Pine",
+    category: "Disinfektan Rumah",
+    size: "500 ml / 1 Liter",
+    scent: "Pine",
+    price: "Mulai Rp12.000",
+    desc: "Karbol wangi pine untuk kamar mandi, area luar, saluran air, dan area yang perlu higienis.",
+    badge: "Aromatic",
+    icon: "🌲"
+  },
+  {
+    name: "DARA Detergen Cair",
+    category: "Laundry",
+    size: "1 Liter",
+    scent: "Fresh clean",
+    price: "Mulai Rp15.000",
+    desc: "Detergen cair praktis untuk kebutuhan cuci pakaian keluarga dan usaha laundry kecil.",
+    badge: "Laundry",
+    icon: "👕"
+  },
+  {
+    name: "DARA Pewangi Laundry",
+    category: "Laundry",
+    size: "500 ml / 1 Liter",
+    scent: "Fresh / Floral",
+    price: "Mulai Rp12.000",
+    desc: "Memberikan aroma segar lebih tahan lama untuk pakaian setelah dicuci.",
+    badge: "Wangi",
+    icon: "🌸"
+  },
+  {
+    name: "DARA Pembersih Keramik",
+    category: "Kamar Mandi",
+    size: "500 ml / 1 Liter",
+    scent: "Clean scent",
+    price: "Mulai Rp15.000",
+    desc: "Untuk membantu membersihkan noda pada keramik kamar mandi dan area basah.",
+    badge: "Kuat",
+    icon: "🚿"
+  },
+  {
+    name: "DARA Pembersih Kaca",
+    category: "Rumah & Usaha",
+    size: "500 ml",
+    scent: "Fresh",
+    price: "Mulai Rp10.000",
+    desc: "Cocok untuk kaca rumah, etalase warung, meja kaca, dan permukaan mengkilap.",
+    badge: "Etalase",
+    icon: "🪟"
+  }
+];
+
+function waLink(message) {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+const waMessages = {
+  general: "Halo WA Bot Omah Sabun, saya ingin tanya katalog produk.",
+  reseller: "Halo WA Bot Omah Sabun, saya ingin daftar reseller. Tolong kirim syarat, paket awal, dan daftar harga reseller.",
+  order: "Halo WA Bot Omah Sabun, saya ingin order produk Omah Sabun.",
+  grosir: "Halo WA Bot Omah Sabun, saya ingin tanya harga grosir dan pengiriman."
+};
+
+function setWhatsAppLinks() {
+  document.querySelectorAll("[data-wa]").forEach((element) => {
+    const key = element.dataset.wa;
+    element.href = waLink(waMessages[key] || waMessages.general);
+  });
+}
+
+function productCard(product) {
+  const message = `Halo WA Bot Omah Sabun, saya ingin tanya produk: ${product.name}.`;
+  return `
+    <article class="product-card">
+      <div class="product-top">
+        <div class="product-icon" aria-hidden="true">${product.icon}</div>
+        <span class="badge">${product.badge}</span>
+      </div>
+      <h3>${product.name}</h3>
+      <p>${product.desc}</p>
+      <div class="product-meta">
+        <span><b>Kategori:</b> ${product.category}</span>
+        <span><b>Ukuran:</b> ${product.size}</span>
+        <span><b>Aroma:</b> ${product.scent}</span>
+        <span><b>Harga:</b> ${product.price}</span>
+      </div>
+      <a class="btn btn-primary" href="${waLink(message)}" target="_blank" rel="noopener">Tanya Produk</a>
+    </article>
+  `;
+}
+
+function renderCategories() {
+  const select = document.getElementById("categorySelect");
+  const categories = ["Semua", ...new Set(products.map((product) => product.category))];
+  select.innerHTML = categories
+    .map((category) => `<option value="${category}">${category === "Semua" ? "Semua kategori" : category}</option>`)
+    .join("");
+}
+
+function renderProducts() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const category = document.getElementById("categorySelect").value;
+  const grid = document.getElementById("productGrid");
+
+  const filtered = products.filter((product) => {
+    const matchesCategory = category === "Semua" || product.category === category;
+    const haystack = `${product.name} ${product.category} ${product.size} ${product.scent} ${product.desc}`.toLowerCase();
+    return matchesCategory && haystack.includes(query);
+  });
+
+  grid.innerHTML = filtered.length
+    ? filtered.map(productCard).join("")
+    : `<p class="empty-state">Produk tidak ditemukan. Coba kata kunci lain atau chat WhatsApp Omah Sabun.</p>`;
+}
+
+function initMenu() {
+  const button = document.getElementById("menuButton");
+  const links = document.getElementById("navLinks");
+
+  button.addEventListener("click", () => links.classList.toggle("open"));
+  links.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => links.classList.remove("open"));
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+  setWhatsAppLinks();
+  renderCategories();
+  renderProducts();
+  initMenu();
+
+  document.getElementById("searchInput").addEventListener("input", renderProducts);
+  document.getElementById("categorySelect").addEventListener("change", renderProducts);
+});
