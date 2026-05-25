@@ -1,8 +1,8 @@
 # Omah Sabun Website
 
-Website statis sederhana untuk katalog produk Omah Sabun, program reseller, dan tombol chat ke WA Bot Omah Sabun.
+Website statis sederhana untuk katalog produk Omah Sabun, program reseller, dan tombol chat ke WhatsApp Omah Sabun.
 
-## Nomor WhatsApp Bot
+## Nomor WhatsApp
 
 Nomor sudah diset di `script.js`:
 
@@ -24,20 +24,18 @@ omah-sabun-website/
 ├── index.html
 ├── style.css
 ├── script.js
+├── logo.css
+├── catalog-dynamic.css
 ├── assets/
+│   ├── logo-omah-sabun.svg
+│   ├── favicon-omah-sabun.svg
 │   └── favicon.svg
 └── README.md
 ```
 
 ## Edit produk
 
-Produk ada di `script.js`, bagian:
-
-```js
-const products = [...]
-```
-
-Ubah nama, kategori, ukuran, aroma, harga, dan deskripsi sesuai kebutuhan.
+Produk utama sudah terhubung ke Google Sheet CSV. Jika Sheet tidak terbaca, website akan memakai data cadangan di `script.js`.
 
 ## Rekomendasi domain
 
@@ -63,7 +61,6 @@ Ubah nama, kategori, ukuran, aroma, harga, dan deskripsi sesuai kebutuhan.
 ## Catatan pengembangan berikutnya
 
 Tahap berikutnya bisa ditambah:
-- katalog dinamis dari Google Sheet,
 - harga khusus reseller,
 - form daftar reseller,
 - tracking order,
