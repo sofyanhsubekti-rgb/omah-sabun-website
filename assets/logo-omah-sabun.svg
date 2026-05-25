@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Logo Omah Sabun</title>
+  <desc id="desc">Logo Omah Sabun dengan garis atap rumah dan tulisan Naraya Grup.</desc>
+  <rect width="1200" height="360" fill="#ffffff"/>
+  <path d="M335 118 L600 22 L865 118" fill="none" stroke="#050505" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter"/>
+  <text x="600" y="225" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="132" font-weight="700" letter-spacing="10" fill="#050505">OMAH SABUN</text>
+  <path d="M310 252 C430 246 770 246 890 252" fill="none" stroke="#050505" stroke-width="5" stroke-linecap="round"/>
+  <path d="M440 253 C515 245 685 245 760 253" fill="none" stroke="#050505" stroke-width="10" stroke-linecap="round"/>
+  <text x="600" y="310" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="20" fill="#050505">NARAYA GRUP</text>
+</svg>
