@@ -15,15 +15,28 @@
 </head>
 <body>
   <a class="skip-link" href="#katalog">Lewati ke katalog</a>
+
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Omah Sabun beranda"><img src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun" class="brand-logo" /></a>
-      <button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <a class="brand" href="#top" aria-label="Omah Sabun beranda">
+        <img class="brand-logo" src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+
       <nav class="site-nav" data-nav-menu>
-        <a href="#keunggulan">Keunggulan</a><a href="#reseller">Reseller</a><a href="#katalog">Katalog</a><a href="#cara-order">Cara Order</a><a class="nav-cta" data-whatsapp-link href="#">Order WhatsApp</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#unggulan">Produk</a>
+        <a href="#reseller">Reseller</a>
+        <a href="#katalog">Katalog</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#" data-whatsapp-link>Order WhatsApp</a>
       </nav>
     </div>
   </header>
+
   <main>
     <section class="hero section-soft">
       <div class="container hero-grid">
@@ -31,25 +44,199 @@
           <p class="eyebrow">Produk kebersihan rumah, laundry, reseller & grosir</p>
           <h1>Stok kebutuhan kebersihan lebih mudah, rapi, dan cepat.</h1>
           <p class="hero-lead">Omah Sabun membantu kebutuhan harian, usaha laundry, toko kelontong, reseller, sampai pembelian grosir dengan katalog yang mudah dipilih dan order langsung via WhatsApp.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#katalog">Lihat Katalog</a><a class="btn btn-secondary" data-whatsapp-link href="#">Konsultasi Stok</a></div>
-          <div class="trust-row"><div><strong>Grosir</strong><span>Harga kompetitif</span></div><div><strong>Reseller</strong><span>Siap bantu jualan</span></div><div><strong>WA</strong><span>Order cepat</span></div></div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#katalog">Lihat Katalog</a>
+            <a class="btn btn-secondary" href="#" data-whatsapp-link>Konsultasi Stok</a>
+          </div>
+
+          <div class="trust-row" aria-label="Ringkasan layanan">
+            <div><strong>Grosir</strong><span>Harga kompetitif</span></div>
+            <div><strong>Reseller</strong><span>Siap bantu jualan</span></div>
+            <div><strong>WA</strong><span>Order cepat</span></div>
+          </div>
         </div>
-        <div class="hero-card reveal" aria-label="Sorotan Omah Sabun">
-          <div class="clean-badge">Clean Supply Partner</div>
-          <div class="supply-card main"><span class="card-icon">✦</span><h2>Belanja kebutuhan kebersihan tanpa ribet</h2><p>Pilih produk di katalog, isi jumlah, lalu kirim format pesanan otomatis ke WhatsApp admin.</p></div>
-          <div class="mini-card card-a"><strong>Rumah Tangga</strong><span>Pembersih, sabun, pewangi</span></div><div class="mini-card card-b"><strong>Usaha & Grosir</strong><span>Stok rutin lebih hemat</span></div>
+
+        <div class="hero-panel reveal" aria-label="Sorotan Omah Sabun">
+          <div class="panel-tag">Clean Supply Partner</div>
+          <h2>Belanja kebutuhan kebersihan tanpa ribet.</h2>
+          <p>Pilih produk di katalog, isi jumlah, lalu kirim format pesanan otomatis ke WhatsApp admin.</p>
+          <div class="panel-list">
+            <div><span>01</span><strong>Rumah Tangga</strong><small>Pembersih, sabun, pewangi</small></div>
+            <div><span>02</span><strong>Usaha & Laundry</strong><small>Stok rutin lebih tertata</small></div>
+            <div><span>03</span><strong>Reseller & Grosir</strong><small>Konsultasi paket dan stok</small></div>
+          </div>
         </div>
       </div>
     </section>
-    <section class="section" id="keunggulan"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Kenapa pilih Omah Sabun</p><h2>Dibuat untuk jualan cepat, jelas, dan profesional.</h2></div><div class="feature-grid"><article class="feature-card reveal"><span>01</span><h3>Katalog dinamis</h3><p>Produk dapat diambil dari Google Sheet, sehingga update stok dan harga lebih praktis tanpa edit kode.</p></article><article class="feature-card reveal"><span>02</span><h3>Order via WhatsApp</h3><p>Pelanggan bisa kirim produk pilihan, jumlah, dan kebutuhan dalam format pesan yang rapi.</p></article><article class="feature-card reveal"><span>03</span><h3>Siap grosir & reseller</h3><p>Alur halaman diarahkan untuk pembelian berulang, pelanggan usaha, dan calon mitra reseller.</p></article></div></div></section>
-    <section class="section reseller-section" id="reseller"><div class="container reseller-grid"><div class="reveal"><p class="eyebrow">Program reseller & grosir</p><h2>Bangun stok usaha kebersihan dengan supply yang lebih tertata.</h2><p class="section-copy">Cocok untuk toko rumahan, warung, laundry, kantor, kontrakan, kos, komunitas, dan pembelian keluarga besar. Hubungi admin untuk menanyakan paket, minimal order, dan ketersediaan stok.</p><a class="btn btn-light" data-whatsapp-link href="#">Tanya Paket Grosir</a></div><div class="reseller-points reveal"><div><strong>Harga khusus</strong><span>Untuk pembelian jumlah banyak dan kebutuhan rutin.</span></div><div><strong>Produk variatif</strong><span>Sabun, pembersih, pewangi, dan perlengkapan kebersihan.</span></div><div><strong>Admin responsif</strong><span>Order dan konsultasi kebutuhan langsung lewat WhatsApp.</span></div></div></div></section>
-    <section class="section catalog-section" id="katalog"><div class="container"><div class="section-heading catalog-heading reveal"><div><p class="eyebrow">Katalog produk</p><h2>Pilih produk, isi jumlah, lalu kirim ke WhatsApp.</h2><p class="section-copy">Katalog dapat tersambung ke Google Sheet. Saat URL Sheet belum diisi, website menampilkan kategori contoh berbasis teks.</p></div><a class="btn btn-secondary" data-whatsapp-cart href="#">Kirim Pilihan</a></div><div class="catalog-tools reveal"><label class="search-box"><span>Cari produk</span><input type="search" id="catalogSearch" placeholder="Contoh: sabun, pewangi, pembersih..." autocomplete="off" /></label><label class="filter-box"><span>Kategori</span><select id="categoryFilter"><option value="all">Semua kategori</option></select></label></div><div class="catalog-status" id="catalogStatus" role="status">Memuat katalog...</div><div class="catalog-grid" id="catalogGrid" aria-live="polite"></div></div></section>
-    <section class="section order-section" id="cara-order"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Cara order</p><h2>Alur belanja dibuat singkat.</h2></div><div class="steps"><div class="step reveal"><span>1</span><h3>Pilih produk</h3><p>Cek katalog dan gunakan pencarian untuk menemukan kebutuhan Anda.</p></div><div class="step reveal"><span>2</span><h3>Isi jumlah</h3><p>Masukkan jumlah seperti pcs, liter, dus, paket, atau grosir.</p></div><div class="step reveal"><span>3</span><h3>Kirim ke admin</h3><p>Pesan otomatis tersusun rapi untuk konfirmasi stok, harga, dan pengiriman.</p></div></div></div></section>
-    <section class="section"><div class="container"><div class="section-heading reveal"><p class="eyebrow">FAQ</p><h2>Pertanyaan yang sering ditanyakan.</h2></div><div class="feature-grid"><article class="feature-card reveal"><h3>Bisa order grosir?</h3><p>Bisa. Kirim kebutuhan produk dan jumlah melalui WhatsApp agar admin cek harga dan stok.</p></article><article class="feature-card reveal"><h3>Bisa jadi reseller?</h3><p>Bisa. Hubungi admin untuk paket reseller, minimal order, dan sistem pemesanan.</p></article><article class="feature-card reveal"><h3>Harga sudah final?</h3><p>Harga dapat berubah mengikuti stok, ukuran, paket, area, dan kesepakatan pembelian.</p></article></div></div></section>
-    <section class="section final-cta"><div class="container cta-card reveal"><div><p class="eyebrow">Siap order?</p><h2>Kirim kebutuhan produk kebersihan Anda sekarang.</h2><p>Admin Omah Sabun akan membantu cek stok, rekomendasi produk, dan penawaran pembelian grosir.</p></div><a class="btn btn-light" data-whatsapp-link href="#">Chat WhatsApp</a></div></section>
+
+    <section class="section" id="keunggulan">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Kenapa pilih Omah Sabun</p>
+          <h2>Dibuat untuk jualan cepat, jelas, dan profesional.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><span>01</span><h3>Katalog dinamis</h3><p>Produk dapat diambil dari Google Sheet, sehingga update stok dan harga lebih praktis tanpa edit kode.</p></article>
+          <article class="feature-card reveal"><span>02</span><h3>Order via WhatsApp</h3><p>Pelanggan bisa kirim produk pilihan, jumlah, dan kebutuhan dalam format pesan yang rapi.</p></article>
+          <article class="feature-card reveal"><span>03</span><h3>Siap grosir & reseller</h3><p>Alur halaman diarahkan untuk pembelian berulang, pelanggan usaha, dan calon mitra reseller.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section service-section" id="layanan">
+      <div class="container service-grid">
+        <div class="service-card reveal">
+          <p class="eyebrow">Info layanan</p>
+          <h2>Untuk kebutuhan rumah sampai usaha.</h2>
+          <p>Hubungi admin untuk memastikan ketersediaan stok, minimal order, harga grosir, area pengiriman, dan rekomendasi produk sesuai kebutuhan.</p>
+        </div>
+        <div class="service-list reveal">
+          <div><strong>Jam operasional</strong><span>Chat admin setiap hari, menyesuaikan antrean order.</span></div>
+          <div><strong>Pengiriman</strong><span>Diatur sesuai area dan kesepakatan dengan admin.</span></div>
+          <div><strong>Pembayaran</strong><span>Dikonfirmasi langsung melalui WhatsApp sebelum pesanan diproses.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlight-section" id="unggulan">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Produk unggulan</p>
+          <h2>Kategori produk yang sering dibutuhkan.</h2>
+          <p class="section-copy">Tanpa gambar produk palsu. Produk detail tetap mengikuti katalog dan stok yang dikonfirmasi admin.</p>
+        </div>
+        <div class="highlight-grid">
+          <article class="highlight-card reveal"><strong>Sabun cuci piring</strong><span>Kebutuhan rumah, warung, dan usaha makanan.</span></article>
+          <article class="highlight-card reveal"><strong>Pembersih lantai</strong><span>Untuk rumah, kantor, laundry, kos, dan toko.</span></article>
+          <article class="highlight-card reveal"><strong>Karbol & disinfektan</strong><span>Membantu menjaga area tetap bersih dan segar.</span></article>
+          <article class="highlight-card reveal"><strong>Pewangi laundry</strong><span>Cocok untuk laundry dan kebutuhan rumah tangga.</span></article>
+          <article class="highlight-card reveal"><strong>Detergen cair</strong><span>Stok rutin untuk kebutuhan cuci harian.</span></article>
+          <article class="highlight-card reveal"><strong>Paket grosir</strong><span>Untuk reseller, toko, dan pembelian jumlah banyak.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reseller-section" id="reseller">
+      <div class="container reseller-grid">
+        <div class="reveal">
+          <p class="eyebrow">Program reseller & grosir</p>
+          <h2>Bangun stok usaha kebersihan dengan supply yang lebih tertata.</h2>
+          <p class="section-copy">Cocok untuk toko rumahan, warung, laundry, kantor, kontrakan, kos, komunitas, dan pembelian keluarga besar. Hubungi admin untuk menanyakan paket, minimal order, dan ketersediaan stok.</p>
+          <a class="btn btn-light" href="#" data-whatsapp-link>Tanya Paket Grosir</a>
+        </div>
+        <div class="reseller-points reveal">
+          <div><strong>Harga khusus</strong><span>Untuk pembelian jumlah banyak dan kebutuhan rutin.</span></div>
+          <div><strong>Produk variatif</strong><span>Sabun, pembersih, pewangi, dan perlengkapan kebersihan.</span></div>
+          <div><strong>Admin responsif</strong><span>Order dan konsultasi kebutuhan langsung lewat WhatsApp.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalog-section" id="katalog">
+      <div class="container">
+        <div class="section-heading catalog-heading reveal">
+          <div>
+            <p class="eyebrow">Katalog produk</p>
+            <h2>Pilih produk, isi jumlah, lalu kirim ke WhatsApp.</h2>
+            <p class="section-copy">Katalog dapat tersambung ke Google Sheet. Saat URL Sheet belum diisi, website menampilkan kategori contoh berbasis teks untuk menjaga tampilan tetap rapi.</p>
+          </div>
+          <a class="btn btn-secondary" href="#" data-whatsapp-cart>Kirim Pilihan</a>
+        </div>
+
+        <div class="catalog-tools reveal">
+          <label class="search-box">
+            <span>Cari produk</span>
+            <input type="search" id="catalogSearch" placeholder="Contoh: sabun, pewangi, pembersih..." autocomplete="off" />
+          </label>
+          <label class="filter-box">
+            <span>Kategori</span>
+            <select id="categoryFilter">
+              <option value="all">Semua kategori</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="catalog-status" id="catalogStatus" role="status">Memuat katalog...</div>
+        <div class="catalog-grid" id="catalogGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section order-section" id="cara-order">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Cara order</p>
+          <h2>Alur belanja dibuat singkat.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><span>1</span><h3>Pilih produk</h3><p>Cek katalog dan gunakan pencarian untuk menemukan kebutuhan Anda.</p></div>
+          <div class="step reveal"><span>2</span><h3>Isi jumlah</h3><p>Masukkan jumlah atau kebutuhan seperti pcs, liter, dus, paket, atau grosir.</p></div>
+          <div class="step reveal"><span>3</span><h3>Kirim ke admin</h3><p>Pesan otomatis tersusun rapi untuk konfirmasi stok, harga, dan pengiriman.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proof-section">
+      <div class="container proof-grid">
+        <article class="proof-card reveal"><strong>Untuk rumah</strong><p>Belanja kebutuhan kebersihan rutin lebih mudah karena produk bisa dipilih dari katalog.</p></article>
+        <article class="proof-card reveal"><strong>Untuk laundry</strong><p>Admin bisa membantu rekomendasi stok sesuai kebutuhan pemakaian dan repeat order.</p></article>
+        <article class="proof-card reveal"><strong>Untuk reseller</strong><p>Calon mitra bisa menanyakan paket awal, harga khusus, dan alur pemesanan.</p></article>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Pertanyaan yang sering ditanyakan.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details><summary>Apakah bisa order grosir?</summary><p>Bisa. Silakan kirim kebutuhan produk dan jumlah melalui WhatsApp agar admin bisa cek harga dan stok.</p></details>
+          <details><summary>Apakah bisa menjadi reseller?</summary><p>Bisa. Hubungi admin untuk menanyakan paket reseller, minimal order, dan sistem pemesanan.</p></details>
+          <details><summary>Harga di katalog sudah final?</summary><p>Harga dapat berubah mengikuti stok, ukuran, paket, area, dan kesepakatan pembelian. Admin akan konfirmasi sebelum order diproses.</p></details>
+          <details><summary>Apakah bisa kirim luar area?</summary><p>Bisa ditanyakan ke admin. Pengiriman menyesuaikan lokasi, volume pesanan, dan layanan yang tersedia.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <div class="container cta-card reveal">
+        <div>
+          <p class="eyebrow">Siap order?</p>
+          <h2>Kirim kebutuhan produk kebersihan Anda sekarang.</h2>
+          <p>Admin Omah Sabun akan membantu cek stok, rekomendasi produk, dan penawaran pembelian grosir.</p>
+        </div>
+        <a class="btn btn-light" href="#" data-whatsapp-link>Chat WhatsApp</a>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#top"><img src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun" class="brand-logo" /></a><p>Produk kebersihan untuk rumah, usaha, reseller, dan grosir.</p></div><div><strong>Menu</strong><a href="#keunggulan">Keunggulan</a><a href="#reseller">Reseller</a><a href="#katalog">Katalog</a></div><div><strong>Kontak</strong><a data-whatsapp-link href="#">WhatsApp Admin</a><span>0823-2334-0408</span></div></div><div class="container copyright">© <span id="year"></span> Omah Sabun. All rights reserved.</div></footer>
-  <a class="floating-wa" data-whatsapp-link href="#" aria-label="Chat WhatsApp Omah Sabun">WhatsApp</a>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <img class="brand-logo" src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun" />
+        </a>
+        <p>Produk kebersihan untuk rumah, usaha, reseller, dan grosir.</p>
+      </div>
+      <div>
+        <strong>Menu</strong>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#unggulan">Produk</a>
+        <a href="#reseller">Reseller</a>
+        <a href="#katalog">Katalog</a>
+      </div>
+      <div>
+        <strong>Kontak</strong>
+        <a href="#" data-whatsapp-link>WhatsApp Admin</a>
+        <span>0823-2334-0408</span>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Omah Sabun. All rights reserved.</div>
+  </footer>
+
+  <a class="floating-wa" href="#" data-whatsapp-link aria-label="Chat WhatsApp Omah Sabun">WhatsApp</a>
+
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,24 +1,254 @@
-const OMAH_SABUN_CONFIG={whatsappNumber:'6282323340408',sheetCsvUrl:'',businessName:'Omah Sabun'};
-const fallbackProducts=[{nama:'Sabun Cuci Piring',kategori:'Rumah Tangga',harga:'Hubungi admin',ukuran:'Berbagai ukuran',deskripsi:'Untuk kebutuhan rumah, warung, dan usaha makanan.',status:'Ready'},{nama:'Pembersih Lantai',kategori:'Kebersihan Rumah',harga:'Hubungi admin',ukuran:'Berbagai ukuran',deskripsi:'Cocok untuk rumah, kantor, kos, toko, dan laundry.',status:'Ready'},{nama:'Karbol Aromatic',kategori:'Disinfektan',harga:'Hubungi admin',ukuran:'Berbagai ukuran',deskripsi:'Untuk menjaga area tetap bersih dan segar.',status:'Ready'},{nama:'Pewangi Laundry',kategori:'Laundry',harga:'Hubungi admin',ukuran:'Berbagai varian',deskripsi:'Untuk kebutuhan laundry dan pemakaian rumah tangga.',status:'Cek stok'},{nama:'Detergen Cair',kategori:'Laundry',harga:'Hubungi admin',ukuran:'Berbagai ukuran',deskripsi:'Stok rutin untuk kebutuhan cuci harian.',status:'Cek stok'},{nama:'Paket Reseller / Grosir',kategori:'Grosir',harga:'Konsultasi admin',ukuran:'Sesuai kebutuhan',deskripsi:'Untuk toko, reseller, laundry, dan pembelian jumlah banyak.',status:'By request'}];
-const state={products:[],filtered:[],selected:new Map()};
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),clean=v=>String(v||'').trim();
-document.addEventListener('DOMContentLoaded',init);
-async function init(){const y=$('#year');if(y)y.textContent=new Date().getFullYear();setupNav();setupReveal();setupWa();await loadCatalog();}
-function waUrl(msg){return`https://wa.me/${OMAH_SABUN_CONFIG.whatsappNumber.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`}
-function baseMsg(){return`Halo Admin ${OMAH_SABUN_CONFIG.businessName}, saya ingin bertanya tentang produk kebersihan.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\nProduk yang dicari:\nJumlah kebutuhan:`}
-function prodMsg(p,qty=''){return`Halo Admin ${OMAH_SABUN_CONFIG.businessName}, saya ingin order/cek stok produk berikut.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nProduk: ${p.nama}\nKategori: ${p.kategori}\nHarga: ${p.harga}\nUkuran: ${p.ukuran}\nJumlah: ${qty||'Belum diisi'}\n\nMohon info stok, harga final, dan pengirimannya.`}
-function cartMsg(){if(!state.selected.size)return baseMsg();let list=[...state.selected.values()].map((p,i)=>`${i+1}. ${p.nama}\n   Kategori: ${p.kategori}\n   Ukuran: ${p.ukuran}\n   Harga: ${p.harga}\n   Jumlah: ${p.qty||'Belum diisi'}`).join('\n');return`Halo Admin ${OMAH_SABUN_CONFIG.businessName}, saya ingin order/cek stok produk berikut.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nDaftar produk:\n${list}\n\nMohon info ketersediaan, harga terbaik, dan cara pengirimannya.`}
-function setupWa(){$$('[data-whatsapp-link]').forEach(a=>{a.href=waUrl(baseMsg());a.target='_blank';a.rel='noopener'});$$('[data-whatsapp-cart]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();window.open(waUrl(cartMsg()),'_blank','noopener')})})}
-function setupNav(){const t=$('[data-nav-toggle]'),m=$('[data-nav-menu]');if(!t||!m)return;t.addEventListener('click',()=>{let o=m.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o))});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{m.classList.remove('is-open');t.setAttribute('aria-expanded','false')}))}
-function setupReveal(){let items=$$('.reveal');if(!('IntersectionObserver'in window)){items.forEach(i=>i.classList.add('is-visible'));return}let ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');ob.unobserve(e.target)}}),{threshold:.12});items.forEach(i=>ob.observe(i))}
-async function loadCatalog(){setStatus('Memuat katalog...');try{let url=clean(OMAH_SABUN_CONFIG.sheetCsvUrl);if(!url)throw Error('no sheet');let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('sheet error');let rows=parseCSV(await r.text());state.products=norm(rows);if(!state.products.length)throw Error('empty');setStatus(`${state.products.length} produk berhasil dimuat dari Google Sheet.`)}catch(e){state.products=fallbackProducts.map((p,i)=>({...p,id:`produk-${i}`}));setStatus('Katalog contoh tampil. Hubungkan Google Sheet CSV di script.js untuk data asli.')}state.filtered=[...state.products];categories();bindCatalog();renderCatalog()}
-function parseCSV(text){let rows=[],row=[],cell='',q=false;for(let i=0;i<text.length;i++){let c=text[i],n=text[i+1];if(c=='"'&&q&&n=='"'){cell+='"';i++}else if(c=='"')q=!q;else if(c==','&&!q){row.push(cell.trim());cell=''}else if((c=='\n'||c=='\r')&&!q){if(cell||row.length){row.push(cell.trim());rows.push(row)}row=[];cell='';if(c=='\r'&&n=='\n')i++}else cell+=c}if(cell||row.length){row.push(cell.trim());rows.push(row)}if(!rows.length)return[];let h=rows.shift().map(key);return rows.map(v=>Object.fromEntries(h.map((x,i)=>[x,v[i]||''])))}
-function key(v){return String(v||'').toLowerCase().replace(/[^a-z0-9]+/g,'').trim()}function pick(r,ks){for(let k of ks){let v=r[key(k)];if(v)return v}return''}
-function norm(rows){return rows.map((r,i)=>({id:r.id||`produk-${i}`,nama:pick(r,['nama','name','produk','product'])||'Produk Omah Sabun',kategori:pick(r,['kategori','category','jenis'])||'Produk Kebersihan',harga:pick(r,['harga','price','hargagrosir'])||'Hubungi admin',ukuran:pick(r,['ukuran','size','kemasan','volume','satuan'])||'Retail / grosir',deskripsi:pick(r,['deskripsi','description','keterangan','detail'])||'Produk kebersihan untuk kebutuhan rumah dan usaha.',status:pick(r,['status','stok','stock','availability'])||'Cek stok'})).filter(p=>p.nama&&p.nama!='-')}
-function categories(){let s=$('#categoryFilter');if(!s)return;let cats=[...new Set(state.products.map(p=>p.kategori).filter(Boolean))].sort();s.innerHTML='<option value="all">Semua kategori</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}
-function bindCatalog(){let q=$('#catalogSearch'),c=$('#categoryFilter');q&&q.addEventListener('input',filter);c&&c.addEventListener('change',filter)}
-function filter(){let kw=clean($('#catalogSearch')?.value).toLowerCase(),cat=$('#categoryFilter')?.value||'all';state.filtered=state.products.filter(p=>{let text=`${p.nama} ${p.kategori} ${p.deskripsi} ${p.status}`.toLowerCase();return(!kw||text.includes(kw))&&(cat=='all'||p.kategori==cat)});renderCatalog()}
-function renderCatalog(){let g=$('#catalogGrid');if(!g)return;if(!state.filtered.length){g.innerHTML='<div class="empty-state">Produk tidak ditemukan. Coba kata kunci lain atau chat admin via WhatsApp.</div>';return}g.innerHTML=state.filtered.map(card).join('');g.querySelectorAll('[data-select]').forEach(b=>b.addEventListener('click',()=>toggle(b.dataset.select)));g.querySelectorAll('[data-order]').forEach(a=>a.addEventListener('click',()=>{let p=find(a.dataset.order),qty=clean($(`#qty-${p.id}`)?.value);a.href=waUrl(prodMsg(p,qty));a.target='_blank';a.rel='noopener'}))}
-function card(p){let sel=state.selected.has(p.id);return`<article class="product-card"><div class="product-top"><span class="product-category">${esc(p.kategori)}</span></div><h3 class="product-name">${esc(p.nama)}</h3><p class="product-desc">${esc(p.deskripsi)}</p><div class="product-meta"><span>${esc(p.ukuran)}</span><span>${esc(p.status)}</span></div><div class="product-price"><strong>${esc(p.harga)}</strong><small>Harga dapat berubah</small></div><div class="qty-wrap"><label for="qty-${esc(p.id)}">Jumlah / kebutuhan</label><input class="qty-input" id="qty-${esc(p.id)}" type="text" placeholder="Contoh: 2 pcs, 1 dus, 5 liter"></div><div class="product-actions"><button type="button" data-select="${esc(p.id)}" class="${sel?'is-selected':''}">${sel?'Terpilih':'Pilih'}</button><a href="#" data-order="${esc(p.id)}">Order</a></div></article>`}
-function toggle(id){let p=find(id),qty=clean($(`#qty-${p.id}`)?.value);state.selected.has(id)?state.selected.delete(id):state.selected.set(id,{...p,qty});setStatus(`${state.selected.size} produk dipilih. Klik “Kirim Pilihan” untuk order via WhatsApp.`);renderCatalog()}
-function find(id){return state.products.find(p=>p.id==id)||state.filtered[0]}function setStatus(m){let s=$('#catalogStatus');if(s)s.textContent=m}function esc(v){return String(v||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+const OMAH_SABUN_CONFIG = {
+  whatsappNumber: '6282323340408',
+  // Isi dengan URL CSV Google Sheet yang sudah dipublish, contoh:
+  // https://docs.google.com/spreadsheets/d/e/xxx/pub?output=csv
+  sheetCsvUrl: '',
+  businessName: 'Omah Sabun'
+};
+
+const fallbackProducts = [
+  { name: 'Sabun Cuci Piring', category: 'Rumah Tangga', price: 'Hubungi admin', size: 'Berbagai ukuran', stock: 'Ready', description: 'Untuk kebutuhan rumah, warung, dan usaha makanan.' },
+  { name: 'Pembersih Lantai', category: 'Kebersihan Rumah', price: 'Hubungi admin', size: 'Berbagai ukuran', stock: 'Ready', description: 'Cocok untuk rumah, kantor, kos, toko, dan laundry.' },
+  { name: 'Karbol Aromatic', category: 'Disinfektan', price: 'Hubungi admin', size: 'Berbagai ukuran', stock: 'Ready', description: 'Untuk menjaga area tetap bersih dan segar.' },
+  { name: 'Pewangi Laundry', category: 'Laundry', price: 'Hubungi admin', size: 'Berbagai varian', stock: 'Cek stok', description: 'Untuk kebutuhan laundry dan pemakaian rumah tangga.' },
+  { name: 'Detergen Cair', category: 'Laundry', price: 'Hubungi admin', size: 'Berbagai ukuran', stock: 'Cek stok', description: 'Stok rutin untuk kebutuhan cuci harian.' },
+  { name: 'Paket Reseller / Grosir', category: 'Grosir', price: 'Konsultasi admin', size: 'Sesuai kebutuhan', stock: 'By request', description: 'Untuk toko, reseller, laundry, dan pembelian jumlah banyak.' }
+];
+
+let products = [];
+let selectedItems = [];
+
+const rupiahLike = value => value && value !== '-' ? value : 'Hubungi admin';
+const clean = value => String(value || '').trim();
+const waBase = () => `https://wa.me/${OMAH_SABUN_CONFIG.whatsappNumber}`;
+
+function createWhatsAppUrl(message) {
+  return `${waBase()}?text=${encodeURIComponent(message)}`;
+}
+
+function generalMessage() {
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya produk kebersihan.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\nProduk yang dicari:\nJumlah kebutuhan:\n\nTerima kasih.`;
+}
+
+function productMessage(product, qty = '') {
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya/order produk berikut.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nProduk: ${product.name}\nKategori: ${product.category || '-'}\nUkuran: ${product.size || '-'}\nHarga: ${product.price || 'Hubungi admin'}\nJumlah: ${qty || 'Belum diisi'}\n\nMohon info stok, harga final, dan pengirimannya. Terima kasih.`;
+}
+
+function cartMessage() {
+  const lines = selectedItems.map((item, index) => `${index + 1}. ${item.name}\n   Kategori: ${item.category || '-'}\n   Ukuran: ${item.size || '-'}\n   Harga: ${item.price || 'Hubungi admin'}\n   Jumlah: ${item.qty || 'Belum diisi'}`).join('\n');
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya/order beberapa produk.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nDaftar produk:\n${lines || '-'}\n\nMohon info stok, harga final, dan pengirimannya. Terima kasih.`;
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let value = '';
+  let quoted = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+    if (char === '"' && quoted && next === '"') { value += '"'; i++; continue; }
+    if (char === '"') { quoted = !quoted; continue; }
+    if (char === ',' && !quoted) { row.push(value); value = ''; continue; }
+    if ((char === '\n' || char === '\r') && !quoted) {
+      if (char === '\r' && next === '\n') i++;
+      row.push(value); value = '';
+      if (row.some(cell => clean(cell))) rows.push(row);
+      row = [];
+      continue;
+    }
+    value += char;
+  }
+  row.push(value);
+  if (row.some(cell => clean(cell))) rows.push(row);
+  return rows;
+}
+
+function normalizeProduct(row, headers) {
+  const data = {};
+  headers.forEach((header, index) => data[header] = clean(row[index]));
+  const pick = (...keys) => keys.map(k => data[k]).find(Boolean) || '';
+  return {
+    name: pick('nama', 'produk', 'product', 'name', 'nama produk'),
+    category: pick('kategori', 'category', 'jenis'),
+    price: rupiahLike(pick('harga', 'price', 'harga jual')),
+    size: pick('ukuran', 'size', 'isi', 'kemasan'),
+    stock: pick('stok', 'stock', 'status') || 'Cek stok',
+    description: pick('deskripsi', 'description', 'keterangan', 'catatan')
+  };
+}
+
+async function loadProducts() {
+  const status = document.getElementById('catalogStatus');
+  const url = clean(OMAH_SABUN_CONFIG.sheetCsvUrl);
+  if (!url) {
+    products = fallbackProducts;
+    status.textContent = 'Katalog contoh aktif. Isi sheetCsvUrl di script.js untuk menampilkan data Google Sheet asli.';
+    return;
+  }
+  try {
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Gagal memuat Google Sheet');
+    const text = await response.text();
+    const rows = parseCsv(text);
+    const headers = rows.shift().map(h => clean(h).toLowerCase());
+    products = rows.map(row => normalizeProduct(row, headers)).filter(item => item.name);
+    status.textContent = products.length ? `Menampilkan ${products.length} produk dari Google Sheet.` : 'Google Sheet terbaca, tetapi belum ada produk valid.';
+    if (!products.length) products = fallbackProducts;
+  } catch (error) {
+    products = fallbackProducts;
+    status.textContent = 'Katalog Google Sheet belum bisa dimuat. Menampilkan katalog contoh sementara.';
+    console.error(error);
+  }
+}
+
+function setupCategories() {
+  const select = document.getElementById('categoryFilter');
+  const categories = [...new Set(products.map(item => item.category).filter(Boolean))].sort();
+  select.innerHTML = '<option value="all">Semua kategori</option>' + categories.map(cat => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`).join('');
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
+}
+
+function productCard(product, index) {
+  return `
+    <article class="product-card reveal is-visible">
+      <div class="product-top">
+        <div>
+          <span class="product-category">${escapeHtml(product.category || 'Produk')}</span>
+          <h3 class="product-name">${escapeHtml(product.name)}</h3>
+        </div>
+        <div class="product-price">${escapeHtml(product.price || 'Hubungi admin')}</div>
+      </div>
+      <p class="product-desc">${escapeHtml(product.description || 'Hubungi admin untuk detail produk, stok, dan harga terbaru.')}</p>
+      <div class="product-meta">
+        <span>${escapeHtml(product.size || 'Ukuran fleksibel')}</span>
+        <span>${escapeHtml(product.stock || 'Cek stok')}</span>
+      </div>
+      <div class="qty-wrap">
+        <label for="qty-${index}">Jumlah / kebutuhan</label>
+        <input class="qty-input" id="qty-${index}" data-qty-index="${index}" type="text" placeholder="Contoh: 2 pcs, 1 dus, 5 liter" />
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-secondary btn-small" type="button" data-select-product="${index}">Pilih</button>
+        <a class="btn btn-primary btn-small" href="#" data-order-product="${index}">Order</a>
+      </div>
+    </article>
+  `;
+}
+
+function renderProducts() {
+  const grid = document.getElementById('catalogGrid');
+  const query = clean(document.getElementById('catalogSearch').value).toLowerCase();
+  const category = document.getElementById('categoryFilter').value;
+  const filtered = products.filter(item => {
+    const text = `${item.name} ${item.category} ${item.description} ${item.size}`.toLowerCase();
+    const matchQuery = !query || text.includes(query);
+    const matchCategory = category === 'all' || item.category === category;
+    return matchQuery && matchCategory;
+  });
+  grid.innerHTML = filtered.length ? filtered.map(productCard).join('') : '<div class="empty-state">Produk tidak ditemukan. Coba kata kunci lain atau hubungi admin WhatsApp.</div>';
+}
+
+function addToCart(index) {
+  const product = products[index];
+  const qty = clean(document.querySelector(`[data-qty-index="${index}"]`)?.value);
+  const existing = selectedItems.find(item => item.name === product.name && item.size === product.size);
+  if (existing) existing.qty = qty || existing.qty;
+  else selectedItems.push({ ...product, qty });
+  updateCartLink();
+}
+
+function updateCartLink() {
+  let pill = document.querySelector('.cart-pill');
+  if (!pill) {
+    pill = document.createElement('a');
+    pill.className = 'cart-pill';
+    pill.href = '#';
+    pill.setAttribute('data-whatsapp-cart', '');
+    pill.innerHTML = '<span>0</span>Kirim Pilihan';
+    document.body.appendChild(pill);
+  }
+  const count = selectedItems.length;
+  pill.querySelector('span').textContent = count;
+  pill.classList.toggle('is-visible', count > 0);
+  const url = createWhatsAppUrl(count ? cartMessage() : generalMessage());
+  document.querySelectorAll('[data-whatsapp-cart]').forEach(link => {
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+  });
+}
+
+function bindEvents() {
+  document.querySelectorAll('[data-whatsapp-link]').forEach(link => {
+    link.href = createWhatsAppUrl(generalMessage());
+    link.target = '_blank';
+    link.rel = 'noopener';
+  });
+
+  document.addEventListener('click', event => {
+    const selectButton = event.target.closest('[data-select-product]');
+    if (selectButton) {
+      addToCart(Number(selectButton.dataset.selectProduct));
+      selectButton.textContent = 'Dipilih ✓';
+      setTimeout(() => selectButton.textContent = 'Pilih', 1100);
+    }
+
+    const orderLink = event.target.closest('[data-order-product]');
+    if (orderLink) {
+      const index = Number(orderLink.dataset.orderProduct);
+      const qty = clean(document.querySelector(`[data-qty-index="${index}"]`)?.value);
+      orderLink.href = createWhatsAppUrl(productMessage(products[index], qty));
+      orderLink.target = '_blank';
+      orderLink.rel = 'noopener';
+    }
+  });
+
+  document.getElementById('catalogSearch')?.addEventListener('input', renderProducts);
+  document.getElementById('categoryFilter')?.addEventListener('change', renderProducts);
+
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const menu = document.querySelector('[data-nav-menu]');
+  toggle?.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    menu.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }));
+}
+
+function setupReveal() {
+  const items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(item => item.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(item => observer.observe(item));
+}
+
+async function init() {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  bindEvents();
+  await loadProducts();
+  setupCategories();
+  renderProducts();
+  updateCartLink();
+  setupReveal();
+}
+
+document.addEventListener('DOMContentLoaded', init);
