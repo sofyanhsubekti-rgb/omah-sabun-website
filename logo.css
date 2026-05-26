@@ -1,1 +1,47 @@
-.brand{display:flex;align-items:center}.brand-logo{width:clamp(190px,18vw,260px);height:auto}.footer-logo{width:min(210px,56vw);height:auto}
+.brand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.brand-logo {
+  display: block;
+  width: clamp(180px, 17vw, 250px);
+  height: auto;
+  max-width: 100%;
+}
+
+.footer-logo {
+  display: block;
+  width: min(220px, 56vw);
+  height: auto;
+}
+
+/* Hapus ilustrasi produk palsu */
+.product-visual {
+  display: none !important;
+}
+
+.promo-card {
+  display: block !important;
+  min-height: auto !important;
+  padding: 34px !important;
+}
+
+.promo-card::after {
+  display: none !important;
+}
+
+.hero-card {
+  border-radius: 30px !important;
+}
+
+.ready-list div {
+  display: grid !important;
+  grid-template-columns: 34px 1fr auto !important;
+}
+
+.promo-button {
+  width: 100% !important;
+  margin-top: 16px !important;
+}
