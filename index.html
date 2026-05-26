@@ -21,7 +21,9 @@
       <a class="brand" href="#beranda" aria-label="Omah Sabun">
         <img class="brand-logo" src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun Naraya Grup" />
       </a>
-      <button class="menu-button" id="menuButton" aria-label="Buka menu">Menu</button>
+
+      <button class="menu-button" id="menuButton" aria-label="Buka menu">☰</button>
+
       <nav class="nav-links" id="navLinks">
         <a href="#katalog">Katalog</a>
         <a href="#reseller">Reseller</a>
@@ -29,6 +31,7 @@
         <a href="#tentang">Tentang Kami</a>
         <a href="#kontak">Kontak</a>
       </nav>
+
       <a class="btn btn-primary nav-cta" data-wa="general" target="_blank" rel="noopener">Hubungi Admin</a>
     </div>
   </header>
@@ -37,40 +40,70 @@
     <section id="beranda" class="hero section">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Omah Sabun - Produk Kebersihan Harian</p>
-          <h1>Belanja Produk Kebersihan untuk Rumah, Usaha, dan Reseller Lebih Mudah</h1>
+          <p class="eyebrow">Omah Sabun • Produk Kebersihan Harian</p>
+          <h1>
+            Belanja Produk Kebersihan<br>
+            untuk Rumah, Usaha,<br>
+            dan Reseller <span class="accent">Lebih Mudah</span>
+          </h1>
           <p class="hero-text">Katalog lengkap sabun dan kebutuhan kebersihan harian dengan kualitas terbaik, harga bersahabat, dan order praktis via WhatsApp.</p>
+
           <div class="hero-actions">
             <a class="btn btn-primary" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a>
             <a class="btn btn-outline" href="#katalog">Lihat Katalog</a>
           </div>
+
           <div class="hero-features" aria-label="Keunggulan singkat Omah Sabun">
-            <div><span>OK</span><strong>Produk Berkualitas</strong><small>Terpercaya dan aman</small></div>
-            <div><span>Rp</span><strong>Harga Bersahabat</strong><small>Eceran dan grosir</small></div>
-            <div><span>WA</span><strong>Order Mudah</strong><small>Via WhatsApp</small></div>
+            <div class="mini-feature">
+              <span class="mini-icon">✓</span>
+              <div>
+                <strong>Produk Berkualitas</strong>
+                <small>Terpercaya & aman</small>
+              </div>
+            </div>
+            <div class="mini-feature">
+              <span class="mini-icon">Rp</span>
+              <div>
+                <strong>Harga Bersahabat</strong>
+                <small>Eceran & grosir</small>
+              </div>
+            </div>
+            <div class="mini-feature">
+              <span class="mini-icon">WA</span>
+              <div>
+                <strong>Order Mudah</strong>
+                <small>Via WhatsApp</small>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="hero-card" aria-label="Paket rekomendasi Omah Sabun">
           <div class="promo-card">
             <div class="promo-copy">
-              <p>Paket rekomendasi</p>
-              <h2>Paket Hemat Rumah Bersih</h2>
-              <span>Sabun cuci piring, pel lantai, karbol, dan sabun cuci tangan.</span>
+              <p class="promo-label">Paket Rekomendasi</p>
+              <h2>Paket Hemat<br>Rumah Bersih</h2>
+              <p class="promo-desc">Sabun cuci piring, pel lantai, karbol, dan sabun cuci tangan.</p>
             </div>
+
             <div class="product-visual" aria-hidden="true">
-              <span class="pack-demo">Sabun<br>Cuci Piring</span>
-              <span class="bottle-demo blue">Pel<br>Lantai</span>
-              <span class="bottle-demo purple">Karbol<br>Pine</span>
-              <span class="pump-demo">Sabun<br>Tangan</span>
+              <div class="visual-leaf leaf-top"></div>
+              <div class="visual-leaf leaf-right"></div>
+              <div class="visual-podium"></div>
+              <div class="pack-demo">Sabun<br>Cuci Piring</div>
+              <div class="bottle-demo blue">Pel<br>Lantai</div>
+              <div class="bottle-demo purple">Karbol<br>Pine</div>
+              <div class="pump-demo">Sabun<br>Tangan</div>
             </div>
           </div>
+
           <div class="ready-list">
-            <div><span>OK</span> Sabun Cuci Piring <b>Ready</b></div>
-            <div><span>OK</span> Sabun Pel Lantai <b>Ready</b></div>
-            <div><span>OK</span> Karbol Aromatic Pine <b>Ready</b></div>
-            <div><span>OK</span> Sabun Cuci Tangan <b>Ready</b></div>
+            <div><span>✓</span><strong>Sabun Cuci Piring</strong><b>Ready</b></div>
+            <div><span>✓</span><strong>Sabun Pel Lantai</strong><b>Ready</b></div>
+            <div><span>✓</span><strong>Karbol Aromatic Pine</strong><b>Ready</b></div>
+            <div><span>✓</span><strong>Sabun Cuci Tangan</strong><b>Ready</b></div>
           </div>
+
           <a class="btn btn-primary promo-button" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a>
         </div>
       </div>
@@ -81,12 +114,33 @@
         <div class="section-heading center clean-heading">
           <h2>Kenapa Omah Sabun?</h2>
         </div>
+
         <div class="advantage-grid advantage-five">
-          <article><span>OK</span><h3>Produk Terpercaya</h3><p>Produk kebersihan berkualitas untuk kebutuhan harian Anda.</p></article>
-          <article><span>Rp</span><h3>Eceran & Grosir</h3><p>Melayani pembelian satuan maupun grosir untuk usaha.</p></article>
-          <article><span>RS</span><h3>Cocok untuk Reseller</h3><p>Stok aman, harga bersaing, keuntungan lebih besar.</p></article>
-          <article><span>WA</span><h3>Order Mudah</h3><p>Cukup chat WhatsApp, pesanan langsung diproses.</p></article>
-          <article><span>ST</span><h3>Stok Fleksibel</h3><p>Stok bisa disesuaikan dengan kebutuhan Anda.</p></article>
+          <article>
+            <span>✓</span>
+            <h3>Produk Terpercaya</h3>
+            <p>Produk kebersihan berkualitas untuk kebutuhan harian Anda.</p>
+          </article>
+          <article>
+            <span>🛒</span>
+            <h3>Eceran & Grosir</h3>
+            <p>Melayani pembelian eceran maupun grosir untuk usaha.</p>
+          </article>
+          <article>
+            <span>👥</span>
+            <h3>Cocok untuk Reseller</h3>
+            <p>Stok aman, harga bersaing, keuntungan lebih besar.</p>
+          </article>
+          <article>
+            <span>WA</span>
+            <h3>Order Mudah</h3>
+            <p>Cukup chat WhatsApp, pesanan langsung diproses.</p>
+          </article>
+          <article>
+            <span>📦</span>
+            <h3>Stok Fleksibel</h3>
+            <p>Stok bisa disesuaikan dengan kebutuhan Anda.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -94,19 +148,27 @@
     <section id="area-layanan" class="section area-section">
       <div class="container area-panel">
         <div class="area-left">
-          <div class="area-title"><span>OS</span><div><h2>Area Layanan</h2><p>Melayani order untuk berbagai kebutuhan Anda</p></div></div>
+          <div class="area-title">
+            <span class="circle-icon">📍</span>
+            <div>
+              <h2>Area Layanan</h2>
+              <p>Melayani order untuk berbagai kebutuhan Anda</p>
+            </div>
+          </div>
+
           <div class="area-icons">
-            <div><span>RT</span><strong>Rumah Tangga</strong></div>
-            <div><span>WT</span><strong>Warung & Toko</strong></div>
-            <div><span>LD</span><strong>Laundry</strong></div>
-            <div><span>KN</span><strong>Kantor</strong></div>
-            <div><span>RS</span><strong>Reseller</strong></div>
+            <div><span>🏠</span><strong>Rumah Tangga</strong></div>
+            <div><span>🏪</span><strong>Warung & Toko</strong></div>
+            <div><span>🧺</span><strong>Laundry</strong></div>
+            <div><span>🏢</span><strong>Kantor</strong></div>
+            <div><span>👥</span><strong>Reseller</strong></div>
           </div>
         </div>
+
         <div class="area-right">
-          <span class="truck-icon">KR</span>
-          <h3>Pengiriman Sesuai Kesepakatan</h3>
-          <p>Melayani pengiriman sekitar area dan kesepakatan dengan admin.</p>
+          <span class="truck-icon">🚚</span>
+          <h3>Pengiriman<br>Sesuai Kesepakatan</h3>
+          <p>Melayani pengiriman sesuai area dan kesepakatan dengan admin.</p>
           <a class="btn btn-white" data-wa="grosir" target="_blank" rel="noopener">Cek Area & Pengiriman</a>
         </div>
       </div>
@@ -119,10 +181,14 @@
           <h2>Pilih produk sesuai kebutuhan</h2>
           <p>Harga dapat disesuaikan dengan area, ukuran, stok, dan paket reseller. Klik tombol produk untuk tanya langsung ke WhatsApp Omah Sabun.</p>
         </div>
+
         <div class="catalog-tools">
           <input id="searchInput" type="search" placeholder="Cari produk, contoh: karbol, laundry, kaca..." />
-          <select id="categorySelect" aria-label="Filter kategori"><option value="Semua">Semua kategori</option></select>
+          <select id="categorySelect" aria-label="Filter kategori">
+            <option value="Semua">Semua kategori</option>
+          </select>
         </div>
+
         <div class="product-grid" id="productGrid"></div>
       </div>
     </section>
@@ -135,15 +201,24 @@
           <p>Cocok untuk ibu rumah tangga, pemilik warung, komunitas, karyawan, mahasiswa, dan siapa pun yang ingin mulai jualan produk yang cepat habis dan bisa repeat order.</p>
           <a class="btn btn-green" data-wa="reseller" target="_blank" rel="noopener">Gabung Reseller Sekarang</a>
         </div>
+
         <div class="benefit-list">
-          <div>Bisa mulai dari modal kecil</div><div>Produk kebutuhan harian, repeat order tinggi</div><div>Harga khusus reseller dan paket stok awal</div><div>Materi promosi siap pakai untuk status WhatsApp</div><div>Alur order dibantu admin Omah Sabun</div>
+          <div>Bisa mulai dari modal kecil</div>
+          <div>Produk kebutuhan harian, repeat order tinggi</div>
+          <div>Harga khusus reseller dan paket stok awal</div>
+          <div>Materi promosi siap pakai untuk status WhatsApp</div>
+          <div>Alur order dibantu admin Omah Sabun</div>
         </div>
       </div>
     </section>
 
     <section id="cara-order" class="section">
       <div class="container">
-        <div class="section-heading center"><p class="eyebrow">Cara Order</p><h2>Dari katalog langsung ke WhatsApp</h2></div>
+        <div class="section-heading center">
+          <p class="eyebrow">Cara Order</p>
+          <h2>Dari katalog langsung ke WhatsApp</h2>
+        </div>
+
         <div class="steps-grid">
           <article><span>1</span><h3>Pilih produk</h3><p>Lihat katalog dan pilih produk untuk kebutuhan rumah, usaha, atau reseller.</p></article>
           <article><span>2</span><h3>Klik Tanya Produk</h3><p>Tombol produk otomatis membawa pesan awal ke WhatsApp Omah Sabun.</p></article>
@@ -154,13 +229,26 @@
     </section>
 
     <section id="tentang" class="section about-section">
-      <div class="container about-card"><div><p class="eyebrow">Tentang Kami</p><h2>Omah Sabun hadir untuk memudahkan belanja produk kebersihan harian.</h2></div><p>Kami membantu kebutuhan rumah tangga, warung, laundry, kantor, dan reseller dengan katalog yang mudah dicek, alur order sederhana, serta komunikasi langsung melalui WhatsApp.</p></div>
+      <div class="container about-card">
+        <div>
+          <p class="eyebrow">Tentang Kami</p>
+          <h2>Omah Sabun hadir untuk memudahkan belanja produk kebersihan harian.</h2>
+        </div>
+        <p>Kami membantu kebutuhan rumah tangga, warung, laundry, kantor, dan reseller dengan katalog yang mudah dicek, alur order sederhana, serta komunikasi langsung melalui WhatsApp.</p>
+      </div>
     </section>
 
     <section id="kontak" class="section contact-section">
       <div class="container contact-card">
-        <div><p class="eyebrow light">Siap dibantu?</p><h2>Order eceran, grosir, atau daftar reseller Omah Sabun.</h2><p>Klik tombol di bawah untuk langsung terhubung ke WhatsApp Omah Sabun.</p></div>
-        <div class="contact-actions"><a class="btn btn-white" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a><a class="btn btn-dark" data-wa="grosir" target="_blank" rel="noopener">Tanya Grosir/Pengiriman</a></div>
+        <div>
+          <p class="eyebrow light">Siap dibantu?</p>
+          <h2>Order eceran, grosir, atau daftar reseller Omah Sabun.</h2>
+          <p>Klik tombol di bawah untuk langsung terhubung ke WhatsApp Omah Sabun.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-white" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a>
+          <a class="btn btn-dark" data-wa="grosir" target="_blank" rel="noopener">Tanya Grosir/Pengiriman</a>
+        </div>
       </div>
     </section>
   </main>
@@ -169,11 +257,35 @@
 
   <footer class="footer">
     <div class="container footer-columns">
-      <div class="footer-main"><a class="footer-brand" href="#beranda" aria-label="Omah Sabun"><img class="footer-logo" src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun Naraya Grup" /></a><p>Omah Sabun menyediakan berbagai produk kebersihan harian untuk rumah, usaha, laundry, kantor, dan reseller dengan kualitas terbaik dan harga bersahabat.</p></div>
-      <div class="footer-nav"><h3>Menu</h3><a href="#katalog">Katalog</a><a href="#reseller">Reseller</a><a href="#cara-order">Cara Order</a><a href="#tentang">Tentang Kami</a><a href="#kontak">Kontak</a></div>
-      <div class="footer-info"><h3>Informasi</h3><p>Melayani kebutuhan kebersihan harian rumah tangga dan berbagai jenis usaha.</p><a class="btn btn-primary footer-btn" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a></div>
-      <div class="footer-contact"><h3>Hubungi Kami</h3><p><strong>0823-2334-0408</strong><br><span>Chat WhatsApp admin</span></p><p><strong>Jam Operasional</strong><br><span>08.00 - 20.00 WIB</span></p></div>
+      <div class="footer-main">
+        <a class="footer-brand" href="#beranda" aria-label="Omah Sabun">
+          <img class="footer-logo" src="assets/logo-omah-sabun.svg" alt="Logo Omah Sabun Naraya Grup" />
+        </a>
+        <p>Omah Sabun menyediakan berbagai produk kebersihan harian untuk rumah, usaha, laundry, kantor, dan reseller dengan kualitas terbaik dan harga bersahabat.</p>
+      </div>
+
+      <div class="footer-nav">
+        <h3>Menu</h3>
+        <a href="#katalog">Katalog</a>
+        <a href="#reseller">Reseller</a>
+        <a href="#cara-order">Cara Order</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+
+      <div class="footer-info">
+        <h3>Informasi</h3>
+        <p>Melayani kebutuhan kebersihan harian rumah tangga dan berbagai jenis usaha.</p>
+        <a class="btn btn-primary footer-btn" data-wa="order" target="_blank" rel="noopener">Order via WhatsApp</a>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Hubungi Kami</h3>
+        <p><strong>0823-2334-0408</strong><br><span>Chat WhatsApp admin</span></p>
+        <p><strong>Jam Operasional</strong><br><span>08.00 - 20.00 WIB</span></p>
+      </div>
     </div>
+
     <div class="footer-bottom">© <span id="year"></span> Omah Sabun. All rights reserved.</div>
   </footer>
 
