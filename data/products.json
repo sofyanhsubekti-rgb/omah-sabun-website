@@ -1,0 +1,21 @@
+{
+  "source": "Google Sheet Omah Sabun",
+  "sheetId": "1_pxFlratkGmhudC5-3HZ9xgrH5qXl2Noz9UmTCPfa6Q",
+  "sheetName": "MASTER_PRODUK",
+  "syncedAt": "2026-05-27",
+  "products": [
+    {"id":"PRD001","name":"Dara Cuci Piring - Jeruk Nipis","category":"Sabun Dapur","variant":"Jeruk Nipis","price":"Rp 12.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Sabun cuci piring varian Jeruk Nipis untuk kebutuhan rumah, warung, dan usaha makanan."},
+    {"id":"PRD002","name":"Dara Cuci Piring - Lemon","category":"Sabun Dapur","variant":"Lemon","price":"Rp 12.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Sabun cuci piring varian Lemon untuk dapur rumah tangga dan kebutuhan usaha."},
+    {"id":"PRD003","name":"Dara Cuci Tangan - Strawbery","category":"Hand Soap","variant":"Strawberi","price":"Rp 8.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Hand soap varian Strawberi untuk rumah, kantor, toko, dan area usaha."},
+    {"id":"PRD004","name":"Dara Cuci Tangan - Rose","category":"Hand Soap","variant":"Rose","price":"Rp 8.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Hand soap varian Rose untuk kebutuhan cuci tangan harian."},
+    {"id":"PRD005","name":"Dara Deterjen Cair - Lavender Fresh","category":"Laundry","variant":"Lavender Fresh","price":"Rp 10.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Deterjen cair varian Lavender Fresh untuk laundry dan cucian harian."},
+    {"id":"PRD006","name":"Dara Deterjen Cair - Sakura Sweet","category":"Laundry","variant":"Sakura Sweet","price":"Rp 10.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Deterjen cair varian Sakura Sweet untuk kebutuhan cuci rutin."},
+    {"id":"PRD007","name":"Dara Pel Lantai - Apel","category":"Pembersih Lantai","variant":"Apel","price":"Rp 7.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Pembersih lantai varian Apel untuk rumah, kos, toko, dan kantor."},
+    {"id":"PRD008","name":"Dara Pel Lantai - Lemon Citrus","category":"Pembersih Lantai","variant":"Lemon Citrus","price":"Rp 7.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Pembersih lantai varian Lemon Citrus untuk area rumah dan usaha."},
+    {"id":"PRD009","name":"Dara Softener - Downy Blue","category":"Laundry","variant":"Downy Blue","price":"Rp 11.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Softener varian Downy Blue untuk laundry dan pakaian harian."},
+    {"id":"PRD010","name":"Dara Softener - Snappy","category":"Laundry","variant":"Snappy","price":"Rp 11.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Softener varian Snappy untuk kebutuhan pewangi dan pelembut pakaian."},
+    {"id":"PRD011","name":"Dara Karbol - Pine","category":"Disinfektan","variant":"Pine","price":"Rp 6.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Karbol varian Pine untuk menjaga area tetap bersih dan segar."},
+    {"id":"PRD012","name":"Dara Pembersih Kerak Keramik - Lemon","category":"Pembersih Kerak","variant":"Lemon","price":"Rp 18.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Pembersih kerak keramik varian Lemon untuk kebutuhan lantai dan kamar mandi."},
+    {"id":"PRD013","name":"Dara Pembersih Kaca - Ocean Fresh","category":"Pembersih Kaca","variant":"Ocean Fresh","price":"Rp 8.000 / 1000 ML","size":"1000 ML","stock":"Cek stok admin","description":"Pembersih kaca varian Ocean Fresh untuk rumah, toko, dan kantor."}
+  ]
+}
