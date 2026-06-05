@@ -1,8 +1,8 @@
 const OMAH_SABUN_CONFIG = {
   whatsappNumber: '6282323340408',
-  // Isi dengan URL CSV Google Sheet yang sudah dipublish, contoh:
-  // https://docs.google.com/spreadsheets/d/e/xxx/pub?output=csv
   sheetCsvUrl: '',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzHRL6f-hiiad2vubczN5xViqyjgm-32FjsZeXk3R0FgEKphlvCUNB7SG7QZpA201vk/exec',
+  appsScriptSecret: 'omahsabun_naraya_2024',
   businessName: 'Omah Sabun'
 };
 
@@ -27,16 +27,16 @@ function createWhatsAppUrl(message) {
 }
 
 function generalMessage() {
-  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya produk kebersihan.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\nProduk yang dicari:\nJumlah kebutuhan:\n\nTerima kasih.`;
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya produk kebersihan.\n\nNama:\nAlamat lengkap pengiriman:\nProduk yang dicari:\nJumlah (dalam mL, contoh: 1000 mL):\nMetode Pembayaran: COD / QRIS / Transfer Bank\n\nTerima kasih.`;
 }
 
 function productMessage(product, qty = '') {
-  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya/order produk berikut.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nProduk: ${product.name}\nKategori: ${product.category || '-'}\nUkuran: ${product.size || '-'}\nHarga: ${product.price || 'Hubungi admin'}\nJumlah: ${qty || 'Belum diisi'}\n\nMohon info stok, harga final, dan pengirimannya. Terima kasih.`;
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau order produk berikut.\n\nNama:\nAlamat lengkap pengiriman:\n\nProduk: ${product.name}${product.size ? ' - ' + product.size : ''}\nJumlah: ${qty || '(isi jumlah dalam mL)'}\nMetode Pembayaran: COD / QRIS / Transfer Bank\n\nTerima kasih.`;
 }
 
 function cartMessage() {
-  const lines = selectedItems.map((item, index) => `${index + 1}. ${item.name}\n   Kategori: ${item.category || '-'}\n   Ukuran: ${item.size || '-'}\n   Harga: ${item.price || 'Hubungi admin'}\n   Jumlah: ${item.qty || 'Belum diisi'}`).join('\n');
-  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau tanya/order beberapa produk.\n\nNama:\nAlamat/Kota:\nKebutuhan: Rumah / Reseller / Grosir / Laundry\n\nDaftar produk:\n${lines || '-'}\n\nMohon info stok, harga final, dan pengirimannya. Terima kasih.`;
+  const lines = selectedItems.map((item, index) => `${index + 1}. ${item.name}${item.size ? ' - ' + item.size : ''}\n   Jumlah: ${item.qty || '(isi jumlah dalam mL)'}`).join('\n');
+  return `Halo admin ${OMAH_SABUN_CONFIG.businessName}, saya mau order beberapa produk.\n\nNama:\nAlamat lengkap pengiriman:\n\nDaftar produk:\n${lines || '-'}\n\nMetode Pembayaran: COD / QRIS / Transfer Bank\n\nTerima kasih.`;
 }
 
 function parseCsv(text) {
@@ -81,26 +81,52 @@ function normalizeProduct(row, headers) {
 
 async function loadProducts() {
   const status = document.getElementById('catalogStatus');
-  const url = clean(OMAH_SABUN_CONFIG.sheetCsvUrl);
-  if (!url) {
-    products = fallbackProducts;
-    status.textContent = 'Katalog contoh aktif. Isi sheetCsvUrl di script.js untuk menampilkan data Google Sheet asli.';
-    return;
+  const csvUrl = clean(OMAH_SABUN_CONFIG.sheetCsvUrl);
+  const asUrl = clean(OMAH_SABUN_CONFIG.appsScriptUrl);
+
+  // Coba Apps Script dulu (sumber data utama)
+  if (asUrl) {
+    try {
+      const res = await fetch(`${asUrl}?action=bunda&secret=${OMAH_SABUN_CONFIG.appsScriptSecret}&cmd=get_produk`, { cache: 'no-store' });
+      const json = await res.json();
+      if (json.status === 'ok' && Array.isArray(json.data) && json.data.length > 0) {
+        products = json.data.map(p => ({
+          name: clean(p.nama_produk || p.produk || ''),
+          category: clean(p.kategori || 'Produk Omah Sabun'),
+          price: p.harga_per_ml ? `Rp${Number(p.harga_per_ml).toLocaleString('id-ID')}/mL` : 'Hubungi admin',
+          size: clean(p.varian || ''),
+          stock: 'Ready',
+          description: ''
+        })).filter(p => p.name);
+        if (products.length) {
+          status.textContent = `Menampilkan ${products.length} produk.`;
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('Apps Script tidak bisa dimuat, coba CSV:', e.message);
+    }
   }
-  try {
-    const response = await fetch(url, { cache: 'no-store' });
-    if (!response.ok) throw new Error('Gagal memuat Google Sheet');
-    const text = await response.text();
-    const rows = parseCsv(text);
-    const headers = rows.shift().map(h => clean(h).toLowerCase());
-    products = rows.map(row => normalizeProduct(row, headers)).filter(item => item.name);
-    status.textContent = products.length ? `Menampilkan ${products.length} produk dari Google Sheet.` : 'Google Sheet terbaca, tetapi belum ada produk valid.';
-    if (!products.length) products = fallbackProducts;
-  } catch (error) {
-    products = fallbackProducts;
-    status.textContent = 'Katalog Google Sheet belum bisa dimuat. Menampilkan katalog contoh sementara.';
-    console.error(error);
+
+  // Fallback: CSV Google Sheet
+  if (csvUrl) {
+    try {
+      const response = await fetch(csvUrl, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Gagal memuat Google Sheet');
+      const text = await response.text();
+      const rows = parseCsv(text);
+      const headers = rows.shift().map(h => clean(h).toLowerCase());
+      products = rows.map(row => normalizeProduct(row, headers)).filter(item => item.name);
+      status.textContent = products.length ? `Menampilkan ${products.length} produk dari Google Sheet.` : 'Google Sheet terbaca, tetapi belum ada produk valid.';
+      if (products.length) return;
+    } catch (error) {
+      console.error('CSV error:', error);
+    }
   }
+
+  // Fallback akhir: produk statis
+  products = fallbackProducts;
+  status.textContent = 'Menampilkan katalog produk.';
 }
 
 function setupCategories() {
