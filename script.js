@@ -1,7 +1,7 @@
 const OMAH_SABUN_CONFIG = {
   whatsappNumber: '6282323340408',
   sheetCsvUrl: '',
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzHRL6f-hiiad2vubczN5xViqyjgm-32FjsZeXk3R0FgEKphlvCUNB7SG7QZpA201vk/exec',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbyMnORJAO92QQ-z5mhmT0nEVyi40W_NWjJ87E5VehhpwAbvJfptN6YMVTCOuD-1oOTY/exec',
   appsScriptSecret: 'omahsabun_naraya_2024',
   businessName: 'Omah Sabun'
 };
